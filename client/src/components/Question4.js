@@ -1,5 +1,8 @@
+
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Question4 = ({ formData, setFormData, nextStep, prevStep }) => {
   const [vehicleModels, setVehicleModels] = useState([]);
@@ -32,27 +35,32 @@ const Question4 = ({ formData, setFormData, nextStep, prevStep }) => {
   };
 
   return (
-    <div className="container">
-      <h2>Specific Model</h2>
-      {vehicleModels.map(model => (
-        <div key={model._id} className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            value={model.model}
-            checked={formData.vehicleModel === model.model}
-            onChange={handleChange}
-            id={`vehicleModel_${model._id}`}
-          />
-          <label className="form-check-label" htmlFor={`vehicleModel_${model._id}`}>
-            {model.model}
-          </label>
+    <div className="container d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+      <div className="card p-4" style={{ maxWidth: '500px', width: '100%' }}>
+        <h2 className="text-primary mb-4">Specific Model</h2>
+        {vehicleModels.map(model => (
+          <div key={model._id} className="form-check mb-3">
+            <input
+              className="form-check-input"
+              type="radio"
+              value={model.model}
+              checked={formData.vehicleModel === model.model}
+              onChange={handleChange}
+              id={`vehicleModel_${model._id}`}
+            />
+            <label className="form-check-label" htmlFor={`vehicleModel_${model._id}`}>
+              {model.model}
+            </label>
+          </div>
+        ))}
+        <div className="d-flex justify-content-between">
+          <button className="btn btn-secondary" onClick={prevStep} style={{ borderRadius: '5px' }}>Back</button>
+          <button className="btn btn-primary" onClick={handleNext} style={{ borderRadius: '5px' }}>Next</button>
         </div>
-      ))}
-      <button className="btn btn-secondary mr-2" onClick={prevStep}>Back</button>
-      <button className="btn btn-primary" onClick={handleNext}>Next</button>
+      </div>
     </div>
   );
 };
 
 export default Question4;
+

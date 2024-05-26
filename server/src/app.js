@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const vehicleRoutes = require('./routes/vehicle');
 const bookingRoutes = require('./routes/booking');
 const seed=require('../seed/seed');
-
+const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors');
 const app = express();
 app.use(express.json());
 
+app.use(bodyParser.json());
 app.use(cors());
 app.use('/api/vehicles', vehicleRoutes);
 app.use('/api/bookings', bookingRoutes);

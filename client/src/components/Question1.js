@@ -1,4 +1,9 @@
+
+
+
+
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Question1 = ({ formData, setFormData, nextStep }) => {
   const handleChange = (e) => {
@@ -14,31 +19,37 @@ const Question1 = ({ formData, setFormData, nextStep }) => {
   };
 
   return (
-    <div className="container">
-      <h2>What is your name?</h2>
-      <div className="row">
-        <div className="col">
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName || ''}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="First Name"
-          />
+    <div className="container d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+      <div className="card p-4" style={{ maxWidth: '500px', width: '100%' }}>
+        <h2 className="text-primary mb-4">What is your name?</h2>
+        <div className="row mb-3">
+          <div className="col">
+            <input
+              type="text"
+              name="firstName"
+              value={formData.firstName || ''}
+              onChange={handleChange}
+              className="form-control border-primary"
+              placeholder="First Name"
+              style={{ borderRadius: '5px' }}
+            />
+          </div>
+          <div className="col">
+            <input
+              type="text"
+              name="lastName"
+              value={formData.lastName || ''}
+              onChange={handleChange}
+              className="form-control border-primary"
+              placeholder="Last Name"
+              style={{ borderRadius: '5px' }}
+            />
+          </div>
         </div>
-        <div className="col">
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName || ''}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Last Name"
-          />
-        </div>
+        <button className="btn btn-primary w-100" onClick={handleNext} style={{ borderRadius: '5px' }}>
+          Next
+        </button>
       </div>
-      <button className="btn btn-primary mt-3" onClick={handleNext}>Next</button>
     </div>
   );
 };

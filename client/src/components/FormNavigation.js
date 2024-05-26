@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import Question1 from './Question1';
 import Question2 from './Question2';
 import Question3 from './Question3';
@@ -18,14 +18,20 @@ const FormNavigation = () => {
     setStep(step - 1);
   };
 
-  
+  const resetForm = () => {
+    setFormData({});
+    setStep(1);
+  };
+
   const submitForm = async () => {
     try {
-      console.log(formData)
+      console.log('Submitting form data:', formData);
       await axios.post('http://localhost:5000/api/bookings/book', formData);
       alert('Booking submitted successfully!');
+      resetForm();  
     } catch (error) {
-      alert('Vehicle already booked on same Dates:', error.response?.data?.message || error.message);
+      console.error('Error submitting booking:', error.response?.data?.message || error.message);
+      alert('Vehicle already booked on the same dates: ' + (error.response?.data?.message || error.message));
     }
   };
 
